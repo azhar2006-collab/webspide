@@ -1,0 +1,766 @@
+<?php
+// Page Specific Variables
+$extraHead = '
+<meta name="description" content="Looking for the best digital marketing services? WebSpide, the #1 digital marketing agency, has custom strategies for your business. Let’s boost your brand - hire experts now!">
+<meta name="keywords" content="Digital marketing services, Digital marketing company, Digital marketing agency, Digital marketing solutions, Hire digital marketers, Marketing agency near me, Digital marketing near me, Digital marketing agency near me, White label digital marketing agency, Digital marketing companies near me, Digital marketing services near me, Best digital marketing company, Best digital marketing agency, Best digital marketing services">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+<style>
+    /* Custom Styles */
+    .service-tab.active {
+        background-color: #f3f4f6;
+        border-left: 4px solid #EC4899; /* Pink for Digital Marketing */
+        color: #EC4899;
+    }
+    .accordion-content {
+        transition: max-height 0.3s ease-in-out, opacity 0.3s ease-in-out;
+        max-height: 0;
+        opacity: 0;
+        overflow: hidden;
+    }
+    .accordion-content.open {
+        max-height: 1000px;
+        opacity: 1;
+    }
+    .sticky-col {
+        position: sticky;
+        top: 100px;
+        height: max-content;
+    }
+    @keyframes spin-slow {
+        from { transform: rotate(0deg); }
+        to { transform: rotate(360deg); }
+    }
+    .animate-spin-slow {
+        animation: spin-slow 80s linear infinite;
+    }
+     .nav-item {
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+</style>
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
+';
+$title = "#1 Digital Marketing Company | Digital Marketing Service Agency";
+include 'includes/header.php';
+?>
+
+<!-- Section 1: Hero Banner -->
+<section class="relative py-20 md:py-32 bg-gray-900 text-white overflow-hidden">
+    <!-- Background -->
+    <div class="absolute inset-0 z-0">
+        <img src="assets/images/Digital_Marketing_Banner.png"
+            onerror="this.src='https://images.unsplash.com/photo-1557838923-2985c318be48?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80'"
+            alt="Digital Marketing Services" class="w-full h-full object-cover opacity-20">
+        <div class="absolute inset-0 bg-gradient-to-r from-gray-900 via-gray-900/95 to-transparent"></div>
+    </div>
+
+    <div class="container mx-auto px-6 relative z-10">
+        <div class="flex flex-col lg:flex-row items-center gap-12">
+            <!-- Left Content -->
+            <div class="lg:w-1/2">
+                <h1 class="text-4xl md:text-6xl font-bold mb-6 leading-tight animate-fade-in-up">
+                    Digital Marketing Services <br><span class="text-gradient">WebSpide Technologies</span>
+                </h1>
+                <p class="text-lg text-gray-300 mb-8 leading-relaxed max-w-2xl animate-fade-in-up delay-100">
+                    Boost your brand visibility with WebSpide Technologies, the leading digital marketing company that
+                    delivers results-driven digital marketing solutions. Our expert team crafts custom strategies,
+                    leveraging SEO, PPC, social media, and content marketing to drive traffic, enhance engagement, and
+                    maximize conversions. Hire digital marketers now and grow your business with cutting-edge marketing
+                    techniques.
+                </p>
+                <div class="animate-fade-in-up delay-200">
+                    <a href="quote.php"
+                        class="px-8 py-4 bg-secondary hover:bg-pink-700 text-white font-bold rounded-full transition-all shadow-lg hover:shadow-xl inline-block">
+                        Get A Quote
+                    </a>
+                </div>
+            </div>
+
+            <!-- Right Visual (8-Item Circle Navigator) -->
+            <div class="lg:w-1/2 relative flex justify-center animate-fade-in-up delay-300">
+                <div class="relative w-[300px] h-[300px] md:w-[450px] md:h-[450px]">
+                    <!-- Central Circle -->
+                    <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-40 h-40 md:w-56 md:h-56 bg-gray-800/90 backdrop-blur-sm rounded-full flex items-center justify-center p-4 text-center z-20 shadow-2xl border-4 border-gray-700 transition-all duration-300"
+                        id="nav-center-circle">
+                        <div id="nav-center-content"
+                            class="text-white w-full h-full flex flex-col items-center justify-center">
+                            <span class="text-5xl font-bold text-white block mb-2">8+</span>
+                            <span
+                                class="text-sm text-gray-300 uppercase tracking-widest font-medium">Core<br>Services</span>
+                        </div>
+                    </div>
+
+                    <!-- Orbital Path -->
+                    <div
+                        class="absolute inset-0 rounded-full border-2 border-dashed border-white/10 animate-spin-slow z-0">
+                    </div>
+
+                    <!-- Orbit Items (8 items) -->
+                    <!-- 1. SEO (Top) -->
+                    <a href="javascript:void(0)" onclick="selectServiceAndScroll('seo')"
+                        class="nav-item absolute w-12 h-12 md:w-16 md:h-16 bg-white text-gray-900 rounded-full flex items-center justify-center hover:scale-110 hover:border-blue-500 border-2 border-transparent shadow-lg transition-all z-10"
+                        style="top: 0%; left: 50%; transform: translate(-50%, -50%);"
+                        data-title="Search Engine<br>Optimization">
+                        <i class="fas fa-search text-xl md:text-2xl text-primary"></i>
+                    </a>
+
+                    <!-- 2. Social Media Management (Top Right) -->
+                    <a href="javascript:void(0)" onclick="selectServiceAndScroll('smm_mgt')"
+                        class="nav-item absolute w-12 h-12 md:w-16 md:h-16 bg-white text-gray-900 rounded-full flex items-center justify-center hover:scale-110 hover:border-pink-500 border-2 border-transparent shadow-lg transition-all z-10"
+                        style="top: 15%; left: 85%; transform: translate(-50%, -50%);"
+                        data-title="Social Media<br>Management">
+                        <i class="fas fa-tasks text-xl md:text-2xl text-pink-500"></i>
+                    </a>
+
+                    <!-- 3. Social Media Marketing (Right) -->
+                    <a href="javascript:void(0)" onclick="selectServiceAndScroll('smm_mkt')"
+                        class="nav-item absolute w-12 h-12 md:w-16 md:h-16 bg-white text-gray-900 rounded-full flex items-center justify-center hover:scale-110 hover:border-purple-500 border-2 border-transparent shadow-lg transition-all z-10"
+                        style="top: 50%; left: 100%; transform: translate(-50%, -50%);"
+                        data-title="Social Media<br>Marketing">
+                        <i class="fas fa-bullhorn text-xl md:text-2xl text-purple-500"></i>
+                    </a>
+
+                    <!-- 4. SEM (Bottom Right) -->
+                    <a href="javascript:void(0)" onclick="selectServiceAndScroll('sem')"
+                        class="nav-item absolute w-12 h-12 md:w-16 md:h-16 bg-white text-gray-900 rounded-full flex items-center justify-center hover:scale-110 hover:border-green-500 border-2 border-transparent shadow-lg transition-all z-10"
+                        style="top: 85%; left: 85%; transform: translate(-50%, -50%);"
+                        data-title="Search Engine<br>Marketing">
+                        <i class="fas fa-ad text-xl md:text-2xl text-green-500"></i>
+                    </a>
+
+                    <!-- 5. SEO Content Writing (Bottom) -->
+                    <a href="javascript:void(0)" onclick="selectServiceAndScroll('content_writing')"
+                        class="nav-item absolute w-12 h-12 md:w-16 md:h-16 bg-white text-gray-900 rounded-full flex items-center justify-center hover:scale-110 hover:border-yellow-500 border-2 border-transparent shadow-lg transition-all z-10"
+                        style="top: 100%; left: 50%; transform: translate(-50%, -50%);"
+                        data-title="SEO Content<br>Writing">
+                        <i class="fas fa-pen-nib text-xl md:text-2xl text-yellow-500"></i>
+                    </a>
+
+                    <!-- 6. Email Marketing (Bottom Left) -->
+                    <a href="javascript:void(0)" onclick="selectServiceAndScroll('email')"
+                        class="nav-item absolute w-12 h-12 md:w-16 md:h-16 bg-white text-gray-900 rounded-full flex items-center justify-center hover:scale-110 hover:border-red-500 border-2 border-transparent shadow-lg transition-all z-10"
+                        style="top: 85%; left: 15%; transform: translate(-50%, -50%);" data-title="Email<br>Marketing">
+                        <i class="fas fa-envelope text-xl md:text-2xl text-red-500"></i>
+                    </a>
+
+                    <!-- 7. Influencer Marketing (Left) -->
+                    <a href="javascript:void(0)" onclick="selectServiceAndScroll('influencer')"
+                        class="nav-item absolute w-12 h-12 md:w-16 md:h-16 bg-white text-gray-900 rounded-full flex items-center justify-center hover:scale-110 hover:border-indigo-500 border-2 border-transparent shadow-lg transition-all z-10"
+                        style="top: 50%; left: 0%; transform: translate(-50%, -50%);"
+                        data-title="Influencer<br>Marketing">
+                        <i class="fas fa-users text-xl md:text-2xl text-indigo-500"></i>
+                    </a>
+
+                    <!-- 8. ASO (Top Left) -->
+                    <a href="javascript:void(0)" onclick="selectServiceAndScroll('aso')"
+                        class="nav-item absolute w-12 h-12 md:w-16 md:h-16 bg-white text-gray-900 rounded-full flex items-center justify-center hover:scale-110 hover:border-teal-500 border-2 border-transparent shadow-lg transition-all z-10"
+                        style="top: 15%; left: 15%; transform: translate(-50%, -50%);"
+                        data-title="App Store<br>Optimization">
+                        <i class="fab fa-app-store-ios text-xl md:text-2xl text-teal-500"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Section 2: Intro & Benefits -->
+<section class="py-20 bg-white">
+    <div class="container mx-auto px-6">
+        <div class="flex flex-col md:flex-row gap-12 mb-16">
+            <div class="md:w-1/2">
+                <h2 class="text-3xl md:text-5xl font-bold mb-6">Unlock the Power of Digital Marketing with Our <span
+                        class="text-gradient">Expert Solutions</span></h2>
+            </div>
+            <div class="md:w-1/2">
+                <p class="text-gray-600 text-lg leading-relaxed">
+                    Effective digital marketing services are crucial for brand success. At WebSpide Technologies, we
+                    provide customized solutions that help businesses grow by increasing online visibility, driving
+                    leads, and maximizing ROI. Our digital marketing agency utilizes advanced tools and proven
+                    strategies to ensure your brand stays ahead in the competitive online landscape.
+                </p>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="bg-gray-50 p-8 rounded-2xl hover:shadow-lg transition-all group">
+                <div
+                    class="w-14 h-14 bg-white rounded-xl shadow-sm flex items-center justify-center text-primary text-2xl mb-6 group-hover:bg-primary group-hover:text-white transition-colors">
+                    <i class="fas fa-chart-pie"></i>
+                </div>
+                <h3 class="text-xl font-bold mb-3">Data-Driven Marketing Strategies</h3>
+                <p class="text-gray-500">Our digital marketing company leverages in-depth analytics to create
+                    personalized marketing campaigns. We track key performance metrics to optimize strategies and
+                    maximize customer engagement.</p>
+            </div>
+            <div class="bg-gray-50 p-8 rounded-2xl hover:shadow-lg transition-all group">
+                <div
+                    class="w-14 h-14 bg-white rounded-xl shadow-sm flex items-center justify-center text-secondary text-2xl mb-6 group-hover:bg-secondary group-hover:text-white transition-colors">
+                    <i class="fas fa-bullseye"></i>
+                </div>
+                <h3 class="text-xl font-bold mb-3">Targeted Audience Reach</h3>
+                <p class="text-gray-500">With our expert digital marketing services, we ensure your brand reaches the
+                    right audience through strategic targeting, increasing conversions and customer retention.</p>
+            </div>
+            <div class="bg-gray-50 p-8 rounded-2xl hover:shadow-lg transition-all group">
+                <div
+                    class="w-14 h-14 bg-white rounded-xl shadow-sm flex items-center justify-center text-purple-600 text-2xl mb-6 group-hover:bg-purple-600 group-hover:text-white transition-colors">
+                    <i class="fas fa-share-alt"></i>
+                </div>
+                <h3 class="text-xl font-bold mb-3">Multi-Channel Marketing Expertise</h3>
+                <p class="text-gray-500">We integrate SEO, social media, PPC, and content marketing to provide
+                    comprehensive digital marketing solutions that enhance brand awareness and boost sales.</p>
+            </div>
+            <div class="bg-gray-50 p-8 rounded-2xl hover:shadow-lg transition-all group">
+                <div
+                    class="w-14 h-14 bg-white rounded-xl shadow-sm flex items-center justify-center text-green-600 text-2xl mb-6 group-hover:bg-green-600 group-hover:text-white transition-colors">
+                    <i class="fas fa-dollar-sign"></i>
+                </div>
+                <h3 class="text-xl font-bold mb-3">ROI-Focused Digital Campaigns</h3>
+                <p class="text-gray-500">As a leading digital marketing agency, we prioritize return on investment (ROI)
+                    by optimizing ad spending and marketing efforts to generate high-quality leads.</p>
+            </div>
+            <div class="bg-gray-50 p-8 rounded-2xl hover:shadow-lg transition-all group">
+                <div
+                    class="w-14 h-14 bg-white rounded-xl shadow-sm flex items-center justify-center text-yellow-600 text-2xl mb-6 group-hover:bg-yellow-600 group-hover:text-white transition-colors">
+                    <i class="fas fa-star"></i>
+                </div>
+                <h3 class="text-xl font-bold mb-3">Brand Awareness & Visibility</h3>
+                <p class="text-gray-500">Our digital marketing agency near you enhances brand credibility through
+                    content-driven marketing, social media presence, and paid ad campaigns.</p>
+            </div>
+            <div class="bg-gray-50 p-8 rounded-2xl hover:shadow-lg transition-all group">
+                <div
+                    class="w-14 h-14 bg-white rounded-xl shadow-sm flex items-center justify-center text-red-600 text-2xl mb-6 group-hover:bg-red-600 group-hover:text-white transition-colors">
+                    <i class="fas fa-headset"></i>
+                </div>
+                <h3 class="text-xl font-bold mb-3">24/7 Support & Continuous Optimization</h3>
+                <p class="text-gray-500">We provide ongoing support, A/B testing, and performance monitoring to keep
+                    your digital campaigns ahead of competitors.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Section 3: Services Details -->
+<section id="services-details" class="py-20 bg-gray-50">
+    <div class="container mx-auto px-6">
+        <h2 class="text-3xl md:text-5xl font-bold text-center mb-16">Our Digital Marketing <span
+                class="text-gradient">Services</span></h2>
+
+        <div class="flex flex-col lg:flex-row gap-12">
+            <!-- Left Navigation -->
+            <div class="lg:w-1/3 sticky-col">
+                <div class="bg-white rounded-xl shadow-lg p-2 flex flex-col gap-1">
+                    <button
+                        class="service-tab active w-full text-left px-6 py-4 rounded-lg font-bold text-gray-700 hover:bg-gray-50 flex justify-between items-center"
+                        onclick="showService('seo', this)">Search Engine Optimization (SEO) <i
+                            class="fas fa-chevron-right opacity-50"></i></button>
+                    <button
+                        class="service-tab w-full text-left px-6 py-4 rounded-lg font-bold text-gray-700 hover:bg-gray-50 flex justify-between items-center"
+                        onclick="showService('smm_mgt', this)">Social Media Management <i
+                            class="fas fa-chevron-right opacity-50"></i></button>
+                    <button
+                        class="service-tab w-full text-left px-6 py-4 rounded-lg font-bold text-gray-700 hover:bg-gray-50 flex justify-between items-center"
+                        onclick="showService('smm_mkt', this)">Social Media Marketing <i
+                            class="fas fa-chevron-right opacity-50"></i></button>
+                    <button
+                        class="service-tab w-full text-left px-6 py-4 rounded-lg font-bold text-gray-700 hover:bg-gray-50 flex justify-between items-center"
+                        onclick="showService('sem', this)">Search Engine Marketing (SEM) <i
+                            class="fas fa-chevron-right opacity-50"></i></button>
+                    <button
+                        class="service-tab w-full text-left px-6 py-4 rounded-lg font-bold text-gray-700 hover:bg-gray-50 flex justify-between items-center"
+                        onclick="showService('content_writing', this)">SEO Content Writing <i
+                            class="fas fa-chevron-right opacity-50"></i></button>
+                    <button
+                        class="service-tab w-full text-left px-6 py-4 rounded-lg font-bold text-gray-700 hover:bg-gray-50 flex justify-between items-center"
+                        onclick="showService('content_mkt', this)">Content Marketing <i
+                            class="fas fa-chevron-right opacity-50"></i></button>
+                    <button
+                        class="service-tab w-full text-left px-6 py-4 rounded-lg font-bold text-gray-700 hover:bg-gray-50 flex justify-between items-center"
+                        onclick="showService('email', this)">Email Marketing <i
+                            class="fas fa-chevron-right opacity-50"></i></button>
+                    <button
+                        class="service-tab w-full text-left px-6 py-4 rounded-lg font-bold text-gray-700 hover:bg-gray-50 flex justify-between items-center"
+                        onclick="showService('influencer', this)">Influencer Marketing <i
+                            class="fas fa-chevron-right opacity-50"></i></button>
+                    <button
+                        class="service-tab w-full text-left px-6 py-4 rounded-lg font-bold text-gray-700 hover:bg-gray-50 flex justify-between items-center"
+                        onclick="showService('aso', this)">App Store Optimization (ASO) <i
+                            class="fas fa-chevron-right opacity-50"></i></button>
+                </div>
+            </div>
+
+            <!-- Right Content -->
+            <div class="lg:w-2/3">
+                <!-- SEO -->
+                <div id="seo" class="service-content block animate-fade-in-up">
+                    <div class="bg-white p-8 rounded-2xl shadow-lg">
+                        <h3 class="text-2xl font-bold mb-4">Search Engine Optimization (SEO)</h3>
+                        <p class="text-gray-600 mb-6 leading-relaxed">Achieve top rankings on search engines with
+                            WebSpide Technologies, the leading digital marketing agency specializing in SEO services. We
+                            implement proven strategies, including keyword research, on-page optimization, technical
+                            SEO, and link building, to improve your website’s visibility and organic traffic. Our SEO
+                            experts analyze search trends and user intent to create a data-driven strategy that ensures
+                            long-term success. We enhance your website’s structure and content by optimizing meta tags,
+                            headings, and internal linking, improving search engine rankings. Our technical SEO services
+                            ensure fast page speeds, mobile-friendliness, and seamless user experience. Additionally, we
+                            implement off-page SEO techniques like high-authority backlinks and content marketing to
+                            strengthen your site’s credibility. At WebSpide Technologies, we continuously monitor and
+                            refine SEO strategies through performance tracking, competitor analysis, and
+                            analytics-driven improvements. Whether you are a startup or an established business, our
+                            tailored SEO solutions help you stay ahead of the competition. If you're looking for the
+                            best SEO services near you, our team is ready to boost your online presence and maximize
+                            conversions.</p>
+                        <a href="quote.php?service=seo"
+                            class="px-6 py-3 bg-primary text-white rounded-full font-bold hover:bg-blue-700 transition-colors">Optimize
+                            Your Website Now</a>
+                    </div>
+                </div>
+                <!-- SMM Management -->
+                <div id="smm_mgt" class="service-content hidden animate-fade-in-up">
+                    <div class="bg-white p-8 rounded-2xl shadow-lg">
+                        <h3 class="text-2xl font-bold mb-4">Social Media Management</h3>
+                        <p class="text-gray-600 mb-6 leading-relaxed">Strengthen your online presence with WebSpide
+                            Technologies' Social Media Management services, designed to enhance engagement and brand
+                            loyalty. Our digital marketing experts create compelling content, schedule strategic posts,
+                            and actively engage with your audience across platforms like Facebook, Instagram, Twitter,
+                            LinkedIn, and more. We craft customized social media strategies that align with your brand
+                            identity and business objectives. From designing eye-catching visuals to writing engaging
+                            captions, we ensure your content resonates with your target audience. Our team monitors
+                            social media trends, interactions, and analytics to optimize performance and maximize
+                            engagement. Beyond content creation, we handle community management, responding to comments,
+                            messages, and reviews to build a strong relationship between your brand and customers.
+                            Additionally, we track key performance metrics such as reach, impressions, and engagement
+                            rates to refine strategies continuously. By choosing WebSpide Technologies for social media
+                            management services, you can focus on your business while we handle your online reputation.
+                            Let us help you establish a dynamic social media presence and grow your audience
+                            effortlessly.</p>
+                        <a href="quote.php?service=smm"
+                            class="px-6 py-3 bg-pink-600 text-white rounded-full font-bold hover:bg-pink-700 transition-colors">Get
+                            Social Media Experts</a>
+                    </div>
+                </div>
+                <!-- SMM Marketing -->
+                <div id="smm_mkt" class="service-content hidden animate-fade-in-up">
+                    <div class="bg-white p-8 rounded-2xl shadow-lg">
+                        <h3 class="text-2xl font-bold mb-4">Social Media Marketing</h3>
+                        <p class="text-gray-600 mb-6 leading-relaxed">Increase brand awareness and drive sales with
+                            WebSpide Technologies’ Social Media Marketing services. Our digital marketing experts create
+                            data-driven advertising campaigns on platforms like Facebook, Instagram, LinkedIn, and
+                            Twitter to help businesses reach their ideal customers. We start by analyzing your target
+                            audience, competitors, and industry trends to develop a customized social media advertising
+                            strategy. By utilizing demographic targeting, retargeting techniques, and A/B testing, we
+                            ensure that your ads reach potential customers who are most likely to convert. Our expert
+                            team crafts engaging ad creatives, including compelling visuals, persuasive copy, and
+                            interactive elements, to capture user attention. With real-time performance tracking and
+                            campaign optimization, we continuously refine ad placements, bidding strategies, and
+                            audience targeting to maximize ROI. Whether you're looking to drive website traffic,
+                            generate leads, or increase sales, our social media marketing solutions deliver measurable
+                            results. Partner with WebSpide Technologies, a trusted digital marketing agency, to leverage
+                            the power of social media advertising and achieve your business goals.</p>
+                        <a href="quote.php?service=smm"
+                            class="px-6 py-3 bg-purple-600 text-white rounded-full font-bold hover:bg-purple-700 transition-colors">Launch
+                            Your Social Media Ads</a>
+                    </div>
+                </div>
+                <!-- SEM -->
+                <div id="sem" class="service-content hidden animate-fade-in-up">
+                    <div class="bg-white p-8 rounded-2xl shadow-lg">
+                        <h3 class="text-2xl font-bold mb-4">Search Engine Marketing (SEM)</h3>
+                        <p class="text-gray-600 mb-6 leading-relaxed">Accelerate your online growth with WebSpide
+                            Technologies' Search Engine Marketing (SEM) services, designed to generate instant traffic
+                            and maximize conversions. Our digital marketing company specializes in Google Ads, Bing Ads,
+                            and paid search campaigns that help businesses achieve top visibility on search engines. We
+                            begin by conducting in-depth keyword research and competitor analysis to identify
+                            high-converting search terms. Our PPC experts design compelling ad copies, optimize landing
+                            pages, and implement bid management strategies to ensure maximum ROI. By utilizing Google’s
+                            advanced targeting options, we ensure that your ads appear before the right audience at the
+                            right time. Our SEM campaigns are continuously monitored and optimized for click-through
+                            rates (CTR), conversion rates, and cost per acquisition (CPA). We conduct A/B testing,
+                            adjust bidding strategies, and refine audience segments to improve ad performance.
+                            Additionally, we provide transparent reports, detailing impressions, clicks, and
+                            conversions, so you stay informed about your campaign’s success.</p>
+                        <a href="quote.php?service=sem"
+                            class="px-6 py-3 bg-green-600 text-white rounded-full font-bold hover:bg-green-700 transition-colors">Start
+                            Your SEM Campaign</a>
+                    </div>
+                </div>
+                <!-- Content Writing -->
+                <div id="content_writing" class="service-content hidden animate-fade-in-up">
+                    <div class="bg-white p-8 rounded-2xl shadow-lg">
+                        <h3 class="text-2xl font-bold mb-4">SEO Content Writing</h3>
+                        <p class="text-gray-600 mb-6 leading-relaxed">High-quality content is the foundation of
+                            effective SEO strategies, and at WebSpide Technologies, we create engaging,
+                            keyword-optimized content that boosts search engine rankings and drives organic traffic. Our
+                            SEO content writing services ensure that your website has informative, compelling, and
+                            well-structured content that aligns with search intent. Our expert content writers craft
+                            blog posts, website pages, product descriptions, and guest articles that are optimized for
+                            primary keywords without compromising readability. We integrate LSI keywords, meta tags,
+                            internal linking, and structured formatting to improve discoverability. Beyond keyword
+                            optimization, we focus on providing valuable, engaging, and conversion-driven content that
+                            enhances user experience. Our SEO copywriting techniques ensure that content is persuasive,
+                            easy to read, and encourages action, whether it’s filling out a form, making a purchase, or
+                            subscribing to a newsletter. With regular content updates, analytics tracking, and
+                            performance optimization, we refine content strategies to align with the latest SEO trends.
+                        </p>
+                        <a href="quote.php?service=content"
+                            class="px-6 py-3 bg-yellow-600 text-white rounded-full font-bold hover:bg-yellow-700 transition-colors">Get
+                            High-Quality Content Now</a>
+                    </div>
+                </div>
+                <!-- Content Marketing -->
+                <div id="content_mkt" class="service-content hidden animate-fade-in-up">
+                    <div class="bg-white p-8 rounded-2xl shadow-lg">
+                        <h3 class="text-2xl font-bold mb-4">Content Marketing</h3>
+                        <p class="text-gray-600 mb-6 leading-relaxed">Boost your brand visibility with WebSpide
+                            Technologies’ Content Marketing services, designed to attract, engage, and convert your
+                            audience. Our expert team creates high-quality, keyword-optimized content that enhances your
+                            digital marketing strategy and improves search engine rankings. Whether it’s blog posts,
+                            website copy, case studies, or video content, we craft compelling stories that connect with
+                            your target audience. We focus on creating valuable and informative content that resonates
+                            with users while aligning with search engine algorithms. Our content strategy includes
+                            in-depth SEO content writing, incorporating primary keywords, LSI keywords, and internal
+                            linking to improve discoverability. Additionally, we implement content distribution
+                            strategies across multiple platforms, ensuring maximum reach and engagement. With a
+                            data-driven approach, we analyze audience behavior, content performance, and market trends
+                            to continuously refine our content marketing solutions. Whether you're a startup or an
+                            established brand, our content helps drive organic traffic, build authority, and generate
+                            leads.</p>
+                        <a href="quote.php?service=content"
+                            class="px-6 py-3 bg-orange-600 text-white rounded-full font-bold hover:bg-orange-700 transition-colors">Elevate
+                            Your Brand with Content</a>
+                    </div>
+                </div>
+                <!-- Email Marketing -->
+                <div id="email" class="service-content hidden animate-fade-in-up">
+                    <div class="bg-white p-8 rounded-2xl shadow-lg">
+                        <h3 class="text-2xl font-bold mb-4">Email Marketing</h3>
+                        <p class="text-gray-600 mb-6 leading-relaxed">Maximize customer engagement and conversions with
+                            WebSpide Technologies’ Email Marketing services, designed to deliver personalized,
+                            high-converting campaigns. As a leading digital marketing agency, we create targeted email
+                            strategies that nurture leads, increase sales, and enhance customer loyalty. Our expert team
+                            crafts compelling email copy with SEO-optimized content, persuasive subject lines, and
+                            visually appealing templates to boost open rates and click-through rates. Using segmentation
+                            and automation, we ensure that your audience receives relevant messages at the right time.
+                            Whether it’s promotional emails, newsletters, or automated drip campaigns, our email
+                            marketing solutions drive engagement and brand recall. We leverage advanced analytics to
+                            track email performance, measure conversion rates, and optimize future campaigns for better
+                            results. By integrating email marketing with other digital marketing services such as
+                            content marketing and social media marketing, we create a cohesive brand strategy that
+                            maximizes impact.</p>
+                        <a href="quote.php?service=email"
+                            class="px-6 py-3 bg-red-600 text-white rounded-full font-bold hover:bg-red-700 transition-colors">Boost
+                            Conversions with Email Marketing</a>
+                    </div>
+                </div>
+                <!-- Influencer -->
+                <div id="influencer" class="service-content hidden animate-fade-in-up">
+                    <div class="bg-white p-8 rounded-2xl shadow-lg">
+                        <h3 class="text-2xl font-bold mb-4">Influencer Marketing</h3>
+                        <p class="text-gray-600 mb-6 leading-relaxed">Enhance your brand credibility and reach new
+                            audiences with WebSpide Technologies’ Influencer Marketing services. As a top digital
+                            marketing agency, we connect businesses with the right influencers to drive authentic
+                            engagement and brand awareness. Our expert team identifies relevant influencers across
+                            platforms like Instagram, YouTube, TikTok, and LinkedIn to align with your brand’s values
+                            and target audience. By leveraging influencer partnerships, we create compelling marketing
+                            campaigns that increase brand trust, boost social media marketing efforts, and drive
+                            conversions. We focus on strategic collaborations, including sponsored content, product
+                            reviews, and brand endorsements, ensuring that your message reaches potential customers
+                            effectively. Our data-driven approach tracks influencer performance, audience engagement,
+                            and ROI to optimize campaigns for maximum impact.</p>
+                        <a href="quote.php?service=influencer"
+                            class="px-6 py-3 bg-indigo-600 text-white rounded-full font-bold hover:bg-indigo-700 transition-colors">Amplify
+                            Your Brand with Influencers</a>
+                    </div>
+                </div>
+                <!-- ASO -->
+                <div id="aso" class="service-content hidden animate-fade-in-up">
+                    <div class="bg-white p-8 rounded-2xl shadow-lg">
+                        <h3 class="text-2xl font-bold mb-4">App Store Optimization (ASO)</h3>
+                        <p class="text-gray-600 mb-6 leading-relaxed">Increase app downloads and visibility with
+                            WebSpide Technologies’ App Store Optimization (ASO) services, designed to enhance your app’s
+                            ranking in the Google Play Store and Apple App Store. Our digital marketing experts optimize
+                            app titles, descriptions, keywords, and visuals to improve search discoverability and
+                            conversion rates. We conduct thorough keyword research to ensure that your app ranks for
+                            high-intent search terms, improving its position in app store search results. Additionally,
+                            we enhance app descriptions with SEO content writing, making them informative and engaging
+                            for potential users. Our app store marketing strategies also include compelling visuals,
+                            such as high-quality screenshots and preview videos, to attract more downloads. Beyond
+                            optimization, we analyze user behavior, track performance metrics, and refine strategies to
+                            increase organic downloads and retention.</p>
+                        <a href="quote.php?service=aso"
+                            class="px-6 py-3 bg-teal-600 text-white rounded-full font-bold hover:bg-teal-700 transition-colors">Optimize
+                            Your App for More Downloads</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Section 4: Why Choose Us -->
+<section class="py-20 bg-gray-900 text-white">
+    <div class="container mx-auto px-6">
+        <h2 class="text-3xl md:text-5xl font-bold text-center mb-16">Why Choose WebSpide For <span
+                class="text-gradient">Digital Marketing Services?</span></h2>
+
+        <div class="max-w-4xl mx-auto text-center mb-12">
+            <p class="text-gray-400 text-lg">WebSpide Technologies delivers result-driven digital marketing services
+                tailored to businesses of all sizes. Our expert team uses innovative strategies, including SEO, PPC,
+                content marketing, and social media marketing, to increase brand awareness and customer engagement. As a
+                leading digital marketing agency, we ensure that your brand achieves long-term online success through
+                data-driven marketing techniques that maximize reach, traffic, and conversions.</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- 1 -->
+            <div class="p-8 bg-gray-800 rounded-2xl border border-gray-700">
+                <div class="text-4xl text-primary mb-4 opacity-50 font-bold">01</div>
+                <h3 class="text-xl font-bold mb-3">Proven Industry Expertise</h3>
+                <p class="text-gray-400 text-sm">With extensive experience in digital marketing services, we have helped
+                    businesses across multiple industries achieve measurable growth. Our strategic approach combines
+                    SEO, social media management, and search engine marketing, ensuring that your brand gains a
+                    competitive edge. As a trusted digital marketing company near you, we craft tailored strategies that
+                    align with industry trends and audience behaviors.</p>
+            </div>
+            <!-- 2 -->
+            <div class="p-8 bg-gray-800 rounded-2xl border border-gray-700">
+                <div class="text-4xl text-primary mb-4 opacity-50 font-bold">02</div>
+                <h3 class="text-xl font-bold mb-3">Custom Strategy for Every Business</h3>
+                <p class="text-gray-400 text-sm">Every brand has unique goals, and our digital marketing agency designs
+                    customized campaigns to meet specific business objectives. Whether it's SEO content writing,
+                    influencer marketing, or email marketing, we develop data-backed strategies that enhance online
+                    visibility, generate leads, and drive engagement. Our personalized approach ensures that your brand
+                    stands out in a competitive digital landscape.</p>
+            </div>
+            <!-- 3 -->
+            <div class="p-8 bg-gray-800 rounded-2xl border border-gray-700">
+                <div class="text-4xl text-primary mb-4 opacity-50 font-bold">03</div>
+                <h3 class="text-xl font-bold mb-3">Certified Digital Marketing Experts</h3>
+                <p class="text-gray-400 text-sm">Our team consists of Google-certified digital marketers, SEO
+                    specialists, and content strategists who implement cutting-edge techniques for improved search
+                    rankings and brand positioning. From app store optimization to white-label digital marketing, we
+                    provide comprehensive solutions. Our in-depth knowledge of algorithm updates, paid advertising, and
+                    organic growth strategies ensures that your business stays ahead in the digital space.</p>
+            </div>
+            <!-- 4 -->
+            <div class="p-8 bg-gray-800 rounded-2xl border border-gray-700">
+                <div class="text-4xl text-primary mb-4 opacity-50 font-bold">04</div>
+                <h3 class="text-xl font-bold mb-3">Performance Tracking & Analytics</h3>
+                <p class="text-gray-400 text-sm">We use advanced analytics tools to monitor digital marketing campaigns
+                    in real time, allowing us to optimize strategies for maximum ROI. Whether it's tracking search
+                    engine optimization metrics, engagement on social media, or email marketing conversions, we ensure
+                    that every campaign delivers measurable results. Our digital marketing solutions are continuously
+                    refined based on performance insights.</p>
+            </div>
+            <!-- 5 -->
+            <div class="p-8 bg-gray-800 rounded-2xl border border-gray-700">
+                <div class="text-4xl text-primary mb-4 opacity-50 font-bold">05</div>
+                <h3 class="text-xl font-bold mb-3">Transparent Communication & Reporting</h3>
+                <p class="text-gray-400 text-sm">Transparency is a priority at WebSpide Technologies. Clients receive
+                    detailed performance reports, real-time insights, and regular updates on their digital marketing
+                    strategy. Every aspect, from SEO rankings and keyword performance to PPC ad conversions and social
+                    media engagement, is monitored closely. With clear data visualization and expert analysis,
+                    businesses gain a deep understanding of their campaign progress and ROI.</p>
+            </div>
+            <!-- 6 -->
+            <div class="p-8 bg-gray-800 rounded-2xl border border-gray-700">
+                <div class="text-4xl text-primary mb-4 opacity-50 font-bold">06</div>
+                <h3 class="text-xl font-bold mb-3">Affordable Pricing & Scalable Services</h3>
+                <p class="text-gray-400 text-sm">Our digital marketing services are designed to accommodate businesses
+                    of all sizes. Whether you're a startup or a growing enterprise, we offer cost-effective and scalable
+                    solutions that fit your budget. As a best digital marketing agency near you, we deliver high-quality
+                    SEO, content marketing, social media management, and paid advertising services without compromising
+                    quality.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Section 5: Digital Marketing Process (Workflow) -->
+<section class="py-20 bg-white">
+    <div class="container mx-auto px-6">
+        <div class="text-center mb-16">
+            <h2 class="text-3xl md:text-5xl font-bold mb-4">Our Digital Marketing Services <span
+                    class="text-gradient">Workflow</span>
+            </h2>
+            <p class="text-gray-600">WebSpide Technologies follows a structured digital marketing workflow designed to
+                achieve measurable success. Every campaign goes through detailed research, strategic execution,
+                performance tracking, and continuous optimization to enhance brand visibility, engagement, and
+                conversions.</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- 1 -->
+            <div class="p-6 border border-gray-100 rounded-2xl shadow-md hover:shadow-xl transition-all">
+                <div class="text-4xl text-primary mb-4 font-bold"><i class="fas fa-search-dollar"></i></div>
+                <h3 class="text-xl font-bold mb-2">Research & Strategy Planning</h3>
+                <p class="text-gray-600 text-sm mb-4">We begin by conducting in-depth market research, competitor
+                    analysis, and audience segmentation to develop a customized digital marketing strategy.
+                    Understanding customer behavior, industry trends, and SEO opportunities helps us craft a
+                    result-driven marketing plan that aligns with your business objectives.</p>
+                <ul class="list-disc list-inside text-xs text-gray-500 space-y-1">
+                    <li>In-depth competitor research</li>
+                    <li>Target audience analysis</li>
+                    <li>Goal-driven strategy development</li>
+                </ul>
+            </div>
+            <!-- 2 -->
+            <div class="p-6 border border-gray-100 rounded-2xl shadow-md hover:shadow-xl transition-all">
+                <div class="text-4xl text-primary mb-4 font-bold"><i class="fas fa-bullhorn"></i></div>
+                <h3 class="text-xl font-bold mb-2">Campaign Execution</h3>
+                <p class="text-gray-600 text-sm mb-4">Once the strategy is in place, our team implements SEO, PPC,
+                    content marketing, social media, and email marketing campaigns. By leveraging targeted keywords,
+                    optimized content, and high-converting ad placements, we enhance your brand’s online presence and
+                    customer engagement.</p>
+                <ul class="list-disc list-inside text-xs text-gray-500 space-y-1">
+                    <li>SEO optimization & content creation</li>
+                    <li>Paid ad setup & targeting</li>
+                    <li>Social media content & engagement</li>
+                </ul>
+            </div>
+            <!-- 3 -->
+            <div class="p-6 border border-gray-100 rounded-2xl shadow-md hover:shadow-xl transition-all">
+                <div class="text-4xl text-primary mb-4 font-bold"><i class="fas fa-chart-line"></i></div>
+                <h3 class="text-xl font-bold mb-2">Performance Tracking & Analytics</h3>
+                <p class="text-gray-600 text-sm mb-4">We utilize advanced analytics tools to monitor key performance
+                    indicators (KPIs) such as organic traffic, ad conversions, user engagement, and ROI. Real-time
+                    insights allow us to refine digital marketing strategies for continuous success.</p>
+                <ul class="list-disc list-inside text-xs text-gray-500 space-y-1">
+                    <li>Real-time data tracking</li>
+                    <li>A/B testing for ads & content</li>
+                    <li>Conversion rate optimization</li>
+                </ul>
+            </div>
+            <!-- 4 -->
+            <div class="p-6 border border-gray-100 rounded-2xl shadow-md hover:shadow-xl transition-all">
+                <div class="text-4xl text-primary mb-4 font-bold"><i class="fas fa-sliders-h"></i></div>
+                <h3 class="text-xl font-bold mb-2">Optimization & Scaling</h3>
+                <p class="text-gray-600 text-sm mb-4">Based on analytical insights, we fine-tune digital marketing
+                    campaigns to ensure optimal performance. This includes SEO refinements, PPC bid adjustments,
+                    retargeting strategies, and improved content marketing approaches to drive consistent business
+                    growth.</p>
+                <ul class="list-disc list-inside text-xs text-gray-500 space-y-1">
+                    <li>SEO adjustments & link-building</li>
+                    <li>PPC budget optimization</li>
+                    <li>Audience retargeting strategies</li>
+                </ul>
+            </div>
+            <!-- 5 -->
+            <div class="p-6 border border-gray-100 rounded-2xl shadow-md hover:shadow-xl transition-all">
+                <div class="text-4xl text-primary mb-4 font-bold"><i class="fas fa-file-alt"></i></div>
+                <h3 class="text-xl font-bold mb-2">Reporting & Continuous Improvement</h3>
+                <p class="text-gray-600 text-sm mb-4">We provide detailed performance reports with actionable insights
+                    and recommendations. By comparing competitor performance and identifying new opportunities, we
+                    ensure your digital marketing efforts remain competitive and effective.</p>
+                <ul class="list-disc list-inside text-xs text-gray-500 space-y-1">
+                    <li>Monthly campaign performance reports</li>
+                    <li>Strategy updates & recommendations</li>
+                    <li>Competitor performance comparison</li>
+                </ul>
+            </div>
+            <!-- 6 -->
+            <div class="p-6 border border-gray-100 rounded-2xl shadow-md hover:shadow-xl transition-all">
+                <div class="text-4xl text-primary mb-4 font-bold"><i class="fas fa-seedling"></i></div>
+                <h3 class="text-xl font-bold mb-2">Long-Term Growth & Support</h3>
+                <p class="text-gray-600 text-sm mb-4">Digital marketing is an ongoing process, and we provide continuous
+                    support, updates, and enhancements to keep your business ahead. With evolving SEO strategies,
+                    content marketing updates, and social media trends, we help you achieve sustained brand success.</p>
+                <ul class="list-disc list-inside text-xs text-gray-500 space-y-1">
+                    <li>Regular campaign refinements</li>
+                    <li>New trend adaptation & strategy evolution</li>
+                    <li>24/7 marketing support & consultation</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Section 6: Contact Form -->
+<section id="contact" class="py-20 bg-gray-50">
+    <div class="container mx-auto px-6">
+        <div class="max-w-4xl mx-auto bg-white p-8 md:p-12 rounded-2xl shadow-xl">
+            <h2 class="text-2xl md:text-3xl font-bold text-center mb-8">Get In <span class="text-gradient">Touch</span>
+            </h2>
+            <form action="sendMail.php" method="POST" class="space-y-6">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <input type="text" name="contact-us-name" placeholder="Name" required
+                        class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:border-primary">
+                    <input type="text" name="contact-us-company" placeholder="Company"
+                        class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:border-primary">
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <input type="email" name="contact-us-email" placeholder="Email" required
+                        class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:border-primary">
+                    <input type="tel" name="contact-us-phone" id="contact-us-phone" placeholder="Phone"
+                        class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:border-primary">
+                </div>
+                <textarea name="contact-us-message" rows="4" placeholder="Message" required
+                    class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:border-primary"></textarea>
+
+                <div class="transform scale-90 origin-left">
+                    <div class="g-recaptcha" data-sitekey="6Lf8sR0rAAAAAC3EVgQEYIN3V3qmSu5xcD9sIRHx"></div>
+                </div>
+
+                <button type="submit"
+                    class="w-full btn-gradient text-white font-bold py-4 rounded-lg shadow-lg hover:shadow-xl transition-all">Submit
+                    Request</button>
+            </form>
+        </div>
+    </div>
+</section>
+
+<!-- Section 7: Locations -->
+<?php include("location.php"); ?>
+
+<?php include 'includes/footer.php'; ?>
+
+<script>
+    function showService(id, btn) {
+        document.querySelectorAll('.service-content').forEach(el => {
+            el.classList.add('hidden');
+            el.classList.remove('block');
+        });
+        document.querySelectorAll('.service-tab').forEach(el => {
+            el.classList.remove('active', 'bg-gray-50');
+            el.querySelector('i').classList.add('opacity-50');
+        });
+        const content = document.getElementById(id);
+        content.classList.remove('hidden');
+        content.classList.add('block');
+        btn.classList.add('active', 'bg-gray-50');
+        btn.querySelector('i').classList.remove('opacity-50');
+    }
+
+    function selectServiceAndScroll(id) {
+        document.getElementById('services-details').scrollIntoView({ behavior: 'smooth' });
+        const buttons = document.querySelectorAll('.service-tab');
+        buttons.forEach(b => {
+            if (b.getAttribute('onclick').includes(id)) {
+                b.click();
+            }
+        });
+    }
+
+    // Interactive Circle
+    document.addEventListener('DOMContentLoaded', () => {
+        const navItems = document.querySelectorAll('.nav-item');
+        const centerDisplay = document.getElementById('nav-center-content');
+        const centerCircle = document.getElementById('nav-center-circle');
+        const originalContent = '<span class="text-5xl font-bold text-white block mb-2">8+</span><span class="text-sm text-gray-300 uppercase tracking-widest font-medium">Core<br>Services</span>';
+
+        navItems.forEach(item => {
+            item.addEventListener('mouseenter', () => {
+                const title = item.dataset.title;
+                centerDisplay.innerHTML = `<h3 class="text-base md:text-xl font-bold text-gradient leading-tight fade-in">${title}</h3>`;
+                centerCircle.classList.add('scale-105', 'border-white');
+                centerCircle.classList.remove('border-gray-700');
+            });
+            item.addEventListener('mouseleave', () => {
+                centerDisplay.innerHTML = originalContent;
+                centerCircle.classList.remove('scale-105', 'border-white');
+                centerCircle.classList.add('border-gray-700');
+            });
+        });
+    });
+</script>
